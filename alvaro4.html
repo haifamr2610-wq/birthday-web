@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alvaro Store</title>
+
+<style>
+body {
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #e0f2ff, #f8fbff);
+    color:#1e3a5f;
+}
+
+header {
+    text-align:center;
+    padding:40px 20px;
+    background: linear-gradient(to right, #93c5fd, #60a5fa);
+    color:white;
+}
+
+.container {
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+}
+
+.card {
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(59,130,246,0.15);
+}
+
+h2 { margin-top:0; }
+
+details {
+    margin-bottom:10px;
+    padding:10px;
+    background:#f1f7ff;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+summary {
+    font-weight:bold;
+    font-size:15px;
+}
+
+select, textarea {
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border-radius:12px;
+    border:1px solid #cbd5e1;
+    background:#f8fbff;
+}
+
+button {
+    background:linear-gradient(to right, #60a5fa, #3b82f6);
+    border:none;
+    padding:12px;
+    width:100%;
+    border-radius:25px;
+    font-weight:bold;
+    cursor:pointer;
+    color:white;
+}
+
+button:hover { opacity:0.9; }
+
+footer {
+    text-align:center;
+    padding:20px;
+    font-size:14px;
+    color:#64748b;
+}
+
+.hidden { display:none; }
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Alvaro Store</h1>
+<p>Fast • Trusted • Professional</p>
+</header>
+
+<div class="container">
+
+<!-- PRICELIST INTERAKTIF -->
+<div class="card">
+<h2>📋 Pricelist</h2>
+
+<details>
+<summary>Jasa Buat Dana / Shopeepay / Gopay</summary>
+<p>5p / link</p>
+</details>
+
+<details>
+<summary>Jasa Pinjam QRIS</summary>
+<p>
+1.000 = 5p<br>
+2.000 - 3.000 = 10p<br>
+4.000 - 5.000 = 20p<br>
+5.000 - 6.000 = 30p<br>
+7.000 - 8.000 = 40p<br>
+9.000 - 10.000 = 50p<br>
+11.000 - 12.000 = 60p<br>
+13.000 - 14.000 = 70p<br>
+15.000 - 16.000 = 80p<br>
+17.000 - 18.000 = 90p<br>
+19.000 - 20.000 = 100p<br>
+dan seterusnya
+</p>
+</details>
+
+<details>
+<summary>Jasa TF Damin / Nodan</summary>
+<p>Fee 5p per link</p>
+</details>
+
+<details>
+<summary>Jasa TF OVO / SPAY / GOPAY</summary>
+<p>Fee 5p per nomor</p>
+</details>
+
+<details>
+<summary>Jasa Titip Vote</summary>
+<p>
+4 jam = 30p<br>
+8 jam = 60p<br>
+12 jam = 90p<br>
+16 jam = 120p<br>
+20 jam = 150p<br>
+24 jam = 180p<br><br>
+Tambahan:<br>
+Pinned = 10p<br>
+Reply 2x = 20p<br>
+Pinned + 4x Reply = 40p
+</p>
+</details>
+
+<details>
+<summary>Jasa Paid Promote</summary>
+<p>
+4 jam = 40p<br>
+8 jam = 80p<br>
+12 jam = 120p<br>
+16 jam = 160p<br>
+20 jam = 200p<br>
+24 jam = 240p<br><br>
+Tambahan:<br>
+Pinned = 20p<br>
+Reply 2x = 30p<br>
+Pinned + 4x Reply = 60p
+</p>
+</details>
+
+</div>
+
+<!-- PILIH LAYANAN -->
+<div class="card">
+<h2>Pilih Layanan</h2>
+<select id="kategori" onchange="showForm()">
+<option value="">-- Pilih Layanan --</option>
+<option value="jasget">Jasget</option>
+<option value="jaspin">Jaspin</option>
+<option value="damin">TF Damin/Nodan</option>
+<option value="ewallet">TF Ovo/Spay/Gopay</option>
+<option value="vote">Jastip Vote</option>
+<option value="pp">Paid Promote</option>
+</select>
+</div>
+
+<!-- FORM -->
+<div class="card hidden" id="formArea">
+<h2>Form Order</h2>
+<textarea id="formText" rows="12"></textarea>
+<button onclick="kirim()">Kirim ke Telegram</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 Alvaro Store • Soft Blue Edition 💎
+</footer>
+
+<script>
+function showForm(){
+    var kategori = document.getElementById("kategori").value;
+    var area = document.getElementById("formArea");
+    var text = document.getElementById("formText");
+
+    if(kategori === ""){
+        area.classList.add("hidden");
+        return;
+    }
+
+    area.classList.remove("hidden");
+
+    if(kategori === "jasget"){
+        text.value = `◆ FORMAT ORDER JASGET ◆
+● Aplikasi:
+● Jumlah slot:
+● Jumlah nominal perslot:
+● Nama pengirim:
+● Note:
+● Jumlah link:
+● Payment:`;
+    }
+
+    if(kategori === "jaspin"){
+        text.value = `● FORMAT ORDER JASPIN ●
+● Nama + Username:
+● Nominal + Fee:
+● Tf dari e-wallet:
+● E-wallet tujuan: DANA
+● Nomor / Damin & a.n tujuan:`;
+    }
+
+    if(kategori === "damin"){
+        text.value = `● FORMAT ORDER TF DAMIN/NODAN ●
+● Nominal + Fee:
+● Link Damin/Nomor:`;
+    }
+
+    if(kategori === "ewallet"){
+        text.value = `● FORMAT TF OVO/SPAY/GOPAY ●
+● Aplikasi:
+● Nominal + Fee:
+● Nomor tujuan:`;
+    }
+
+    if(kategori === "vote"){
+        text.value = `• FORMAT JASTIP VOTE •
+° Nama pemesan + idt:
+° Tanggal order:
+° Paket berapa jam:
+° Jam mulai:
+° Tanggal akhir:
+° Jam akhir:
+° Tambahan:
+° Jumlah pembayaran:
+° Pembayaran via:
+° Done sub ch @dagetalvaro: y/n`;
+    }
+
+    if(kategori === "pp"){
+        text.value = `• FORMAT PAID PROMOTE •
+° Nama pemesan + idt:
+° Tanggal order:
+° Paket berapa jam:
+° Jam mulai:
+° Tanggal akhir:
+° Jam akhir:
+° Tambahan:
+° Jumlah pembayaran:
+° Pembayaran via:
+° Done sub ch @dagetalvaro: y/n`;
+    }
+}
+
+function kirim(){
+    var pesan = document.getElementById("formText").value;
+    var url = "https://t.me/Itsalvaroaxel?text=" + encodeURIComponent(pesan);
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
